@@ -8,9 +8,20 @@ interface Route {
   name: string;
 }
 
-const LazyOne = lazy(() => import('../lazyload/pages/LazyPageOne'));
-const LazyTwo = lazy(() => import('../lazyload/pages/LazyPageTwo'));
-const LazyThree = lazy(() => import('../lazyload/pages/LazyPageThree'));
+const LazyOne = lazy(
+  () =>
+    import(/* webpackChunkName: 'LazyPageOne'*/ '../lazyload/pages/LazyPageOne')
+);
+const LazyTwo = lazy(
+  () =>
+    import(/* webpackChunkName: 'LazyPageTwo'*/ '../lazyload/pages/LazyPageTwo')
+);
+const LazyThree = lazy(
+  () =>
+    import(
+      /* webpackChunkName: 'LazyPageThree'*/ '../lazyload/pages/LazyPageThree'
+    )
+);
 
 export const routes: Route[] = [
   {
