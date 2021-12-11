@@ -1,3 +1,5 @@
-export const LazyPageTwo = () => {
-  return <h1>Lazy Page Two</h1>
-}
+const LazyPageTwo = () => {
+  return <h1>Lazy Page Two</h1>;
+};
+
+export default LazyPageTwo;
