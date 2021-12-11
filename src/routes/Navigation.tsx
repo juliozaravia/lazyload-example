@@ -1,6 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
-import { LazyPageOne, LazyPageTwo, LazyPageThree } from '../lazyload/pages';
 
 import { routes } from './routes';
 
