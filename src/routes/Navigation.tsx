@@ -1,8 +1,10 @@
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route, NavLink, Navigate } from "react-router-dom";
-import { LazyPageOne, LazyPageTwo, LazyPageThree } from "../lazyload/pages";
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import { LazyPageOne, LazyPageTwo, LazyPageThree } from '../lazyload/pages';
 
-import logo from "../logo.svg";
+import { routes } from './routes';
+
+import logo from '../logo.svg';
 
 export const Navigation = () => {
   return (
@@ -11,38 +13,23 @@ export const Navigation = () => {
         <nav>
           <img src={logo} alt="React Logo" />
           <ul>
-            <li>
-              <NavLink
-                to="/lazy-page-one"
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/lazy-page-two"
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/lazy-page-three"
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
-              >
-                Users
-              </NavLink>
-            </li>
+            {routes.map((route) => (
+              <li key={route.path}>
+                <NavLink
+                  to={route.to}
+                  className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                >
+                  {route.name}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
 
         <Routes>
-          <Route path="lazy-page-one" element={<LazyPageOne />} />
-          <Route path="lazy-page-two" element={<LazyPageTwo />} />
-          <Route path="lazy-page-three" element={<LazyPageThree />} />
-
+          {routes.map(({ path, Component }) => (
+            <Route key={path} path={path} element={<Component />} />
+          ))}
           <Route path="/*" element={<Navigate to="/lazy-page-one" replace />} />
         </Routes>
       </div>
